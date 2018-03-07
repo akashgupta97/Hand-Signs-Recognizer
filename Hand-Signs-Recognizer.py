@@ -60,3 +60,7 @@ def create_placeholders(n_H0, n_W0, n_C0, n_y):
     ### END CODE HERE ###
 
     return X, Y
+
+X, Y = create_placeholders(64, 64, 3, 6)
+print("X = " + str(X))
+print("Y = " + str(Y))
