@@ -88,3 +88,15 @@ def initialize_parameters():
                   "W2": W2}
 
     return parameters
+
+
+
+tf.reset_default_graph()
+with tf.Session() as sess_test:
+    parameters = initialize_parameters()
+    init = tf.global_variables_initializer()
+    sess_test.run(init)
+    print("W1 = " + str(parameters["W1"].eval()[1, 1, 1]))
+    print("W2 = " + str(parameters["W2"].eval()[1, 1, 1]))
+
+
