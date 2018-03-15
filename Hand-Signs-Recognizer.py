@@ -100,3 +100,34 @@ with tf.Session() as sess_test:
     print("W2 = " + str(parameters["W2"].eval()[1, 1, 1]))
 
 
+# In detail, we will use the following parameters for all the steps:
+#      - Conv2D: stride 1, padding is "SAME"
+#      - ReLU
+#      - Max pool: Use an 8 by 8 filter size and an 8 by 8 stride, padding is "SAME"
+#      - Conv2D: stride 1, padding is "SAME"
+#      - ReLU
+#      - Max pool: Use a 4 by 4 filter size and a 4 by 4 stride, padding is "SAME"
+#      - Flatten the previous output.
+#      - FULLYCONNECTED (FC) layer: Apply a fully connected layer without an non-linear activation function. Do not call the softmax here. This will result in 6 neurons in the output layer, which then get passed later to a softmax. In TensorFlow, the softmax and cost function are lumped together into a single function, which you'll call in a different function when computing the cost.
+
+# In[36]:
+
+# GRADED FUNCTION: forward_propagation
+
+def forward_propagation(X, parameters):
+    """
+    Implements the forward propagation for the model:
+    CONV2D -> RELU -> MAXPOOL -> CONV2D -> RELU -> MAXPOOL -> FLATTEN -> FULLYCONNECTED
+
+    Arguments:
+    X -- input dataset placeholder, of shape (input size, number of examples)
+    parameters -- python dictionary containing your parameters "W1", "W2"
+                  the shapes are given in initialize_parameters
+
+    Returns:
+    Z3 -- the output of the last LINEAR unit
+    """
+
+    # Retrieve the parameters from the dictionary "parameters"
+    W1 = parameters['W1']
+    W2 = parameters['W2']
