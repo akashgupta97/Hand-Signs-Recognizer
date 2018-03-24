@@ -199,3 +199,33 @@ with tf.Session() as sess:
     a = sess.run(cost, {X: np.random.randn(4, 64, 64, 3), Y: np.random.randn(4, 6)})
     print("cost = " + str(a))
 
+
+
+def model(X_train, Y_train, X_test, Y_test, learning_rate=0.009,
+          num_epochs=100, minibatch_size=64, print_cost=True):
+    """
+    Implements a three-layer ConvNet in Tensorflow:
+    CONV2D -> RELU -> MAXPOOL -> CONV2D -> RELU -> MAXPOOL -> FLATTEN -> FULLYCONNECTED
+
+    Arguments:
+    X_train -- training set, of shape (None, 64, 64, 3)
+    Y_train -- test set, of shape (None, n_y = 6)
+    X_test -- training set, of shape (None, 64, 64, 3)
+    Y_test -- test set, of shape (None, n_y = 6)
+    learning_rate -- learning rate of the optimization
+    num_epochs -- number of epochs of the optimization loop
+    minibatch_size -- size of a minibatch
+    print_cost -- True to print the cost every 100 epochs
+
+    Returns:
+    train_accuracy -- real number, accuracy on the train set (X_train)
+    test_accuracy -- real number, testing accuracy on the test set (X_test)
+    parameters -- parameters learnt by the model. They can then be used to predict.
+    """
+
+    ops.reset_default_graph()  # to be able to rerun the model without overwriting tf variables
+    tf.set_random_seed(1)  # to keep results consistent (tensorflow seed)
+    seed = 3  # to keep results consistent (numpy seed)
+    (m, n_H0, n_W0, n_C0) = X_train.shape
+    n_y = Y_train.shape[1]
+    costs = []  # To keep track of the cost
