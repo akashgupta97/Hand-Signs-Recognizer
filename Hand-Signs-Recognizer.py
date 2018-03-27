@@ -229,3 +229,31 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate=0.009,
     (m, n_H0, n_W0, n_C0) = X_train.shape
     n_y = Y_train.shape[1]
     costs = []  # To keep track of the cost
+    # Create Placeholders of the correct shape
+    ### START CODE HERE ### (1 line)
+    X, Y = create_placeholders(n_H0, n_W0, n_C0, n_y)
+    ### END CODE HERE ###
+
+    # Initialize parameters
+    ### START CODE HERE ### (1 line)
+    parameters = initialize_parameters()
+    ### END CODE HERE ###
+
+    # Forward propagation: Build the forward propagation in the tensorflow graph
+    ### START CODE HERE ### (1 line)
+    Z3 = forward_propagation(X, parameters)
+    ### END CODE HERE ###
+
+    # Cost function: Add cost function to tensorflow graph
+    ### START CODE HERE ### (1 line)
+    cost = compute_cost(Z3, Y)
+    ### END CODE HERE ###
+
+    # Backpropagation: Define the tensorflow optimizer. Use an AdamOptimizer that minimizes the cost.
+    ### START CODE HERE ### (1 line)
+    optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
+    ### END CODE HERE ###
+
+    # Initialize all the variables globally
+    init = tf.global_variables_initializer()
+
