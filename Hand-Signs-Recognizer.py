@@ -257,3 +257,27 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate=0.009,
     # Initialize all the variables globally
     init = tf.global_variables_initializer()
 
+    # Start the session to compute the tensorflow graph
+    with tf.Session() as sess:
+
+        # Run the initialization
+        sess.run(init)
+
+        # Do the training loop
+        for epoch in range(num_epochs):
+
+            minibatch_cost = 0.
+            num_minibatches = int(m / minibatch_size)  # number of minibatches of size minibatch_size in the train set
+            seed = seed + 1
+            minibatches = random_mini_batches(X_train, Y_train, minibatch_size, seed)
+
+            for minibatch in minibatches:
+                # Select a minibatch
+                (minibatch_X, minibatch_Y) = minibatch
+                # IMPORTANT: The line that runs the graph on a minibatch.
+                # Run the session to execute the optimizer and the cost, the feedict should contain a minibatch for (X,Y).
+                ### START CODE HERE ### (1 line)
+                _, temp_cost = sess.run(optimizer, feed_dict={X: minibatch_X, Y: minibatch_Y})
+                ### END CODE HERE ###
+                ### HERE HAS BUGS!!!
+                minibatch_cost += temp_cost / num_minibatches
