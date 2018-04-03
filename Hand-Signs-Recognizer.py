@@ -281,3 +281,20 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate=0.009,
                 ### END CODE HERE ###
                 ### HERE HAS BUGS!!!
                 minibatch_cost += temp_cost / num_minibatches
+
+            # Print the cost every epoch
+            if print_cost == True and epoch % 5 == 0:
+                print("Cost after epoch %i: %f" % (epoch, minibatch_cost))
+            if print_cost == True and epoch % 1 == 0:
+                costs.append(minibatch_cost)
+
+        # plot the cost
+        plt.plot(np.squeeze(costs))
+        plt.ylabel('cost')
+        plt.xlabel('iterations (per tens)')
+        plt.title("Learning rate =" + str(learning_rate))
+        plt.show()
+
+        # Calculate the correct predictions
+        predict_op = tf.argmax(Z3, 1)
+        correct_prediction = tf.equal(predict_op, tf.argmax(Y, 1))
