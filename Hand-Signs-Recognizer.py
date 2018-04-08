@@ -310,3 +310,52 @@ def model(X_train, Y_train, X_test, Y_test, learning_rate=0.009,
 
         return train_accuracy, test_accuracy, parameters
 
+_, _, parameters = model(X_train, Y_train, X_test, Y_test)
+
+# **Expected output**: although it may not match perfectly, your expected output should be close to ours and your cost value should decrease.
+#
+# <table>
+# <tr>
+#     <td>
+#     **Cost after epoch 0 =**
+#     </td>
+#
+#     <td>
+#       1.917929
+#     </td>
+# </tr>
+# <tr>
+#     <td>
+#     **Cost after epoch 5 =**
+#     </td>
+#
+#     <td>
+#       1.506757
+#     </td>
+# </tr>
+# <tr>
+#     <td>
+#     **Train Accuracy   =**
+#     </td>
+#
+#     <td>
+#       0.940741
+#     </td>
+# </tr>
+#
+# <tr>
+#     <td>
+#     **Test Accuracy   =**
+#     </td>
+#
+#     <td>
+#       0.783333
+#     </td>
+# </tr>
+# </table>
+
+# Congratulations! You have finised the assignment and built a model that recognizes SIGN language with almost 80% accuracy on the test set. If you wish, feel free to play around with this dataset further. You can actually improve its accuracy by spending more time tuning the hyperparameters, or using regularization (as this model clearly has a high variance).
+#
+# Once again, here's a thumbs up for your work!
+
+# In[52]:
