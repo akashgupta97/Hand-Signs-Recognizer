@@ -359,3 +359,5 @@ _, _, parameters = model(X_train, Y_train, X_test, Y_test)
 # Once again, here's a thumbs up for your work!
 
 # In[52]:
+
+fname = "images/thumbs_up.jpg"
