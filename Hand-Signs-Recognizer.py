@@ -361,3 +361,4 @@ _, _, parameters = model(X_train, Y_train, X_test, Y_test)
 # In[52]:
 
 fname = "images/thumbs_up.jpg"
+image = np.array(ndimage.imread(fname, flatten=False))
